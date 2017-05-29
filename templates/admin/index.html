@@ -1,0 +1,21 @@
+{% extends 'admin/index.html' %}
+{% block sidebar %}
+{{ block.super }}
+    <script>
+    var saveData = JSON.parse(localStorage.saveData || null) || {};
+
+    // Store your data.
+    function saveStuff(obj) {
+      saveData.obj = obj;
+      localStorage.saveData = JSON.stringify(saveData);
+    }
+
+    // Do something with your data.
+    function loadStuff() {
+      return saveData.obj || "No user";
+    }
+    </script>
+    <a href="/admin/add_snapshot/">Сделать снапшот</a>
+    <br>
+    <a href="/admin/load_snapshot/">Загрузить снапшот</a>
+{% endblock %}
